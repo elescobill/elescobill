@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Check and pay your LESCO bill online easily. View your duplicate bill, understand charges, and find multiple payment options.">
+    <title>LESCO Online Bill Check & Payment | Duplicate Bill</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header & Hero */
+        header {
+            background: linear-gradient(135deg, #1a3d7c 0%, #2a5bc0 100%);
+            color: white;
+            padding: 2rem 1rem;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 12px rgba(26, 61, 124, 0.2);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Bill Checker Card */
+        .bill-checker {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.5rem;
+        }
+
+        .bill-checker h2 {
+            color: #1a3d7c;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #eaeff5;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #d1d9e6;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #2a5bc0;
+        }
+
+        .button {
+            display: inline-block;
+            background: #2a5bc0;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background: #1a3d7c;
+            transform: translateY(-2px);
+        }
+
+        .note {
+            background-color: #f0f7ff;
+            border-left: 4px solid #2a5bc0;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Info Sections */
+        .info-section {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section h3 {
+            color: #1a3d7c;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-section h3 i {
+            font-style: normal;
+            background: #eaeff5;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .info-section ul, .info-section ol {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(to right, #f0f7ff, #e6f0ff);
+            border: 1px solid #c5dcff;
+            padding: 1.2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        /* Sidebar */
+        .sidebar-widget {
+            background: white;
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-widget h3 {
+            color: #1a3d7c;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #eaeff5;
+        }
+
+        .contact-list a {
+            display: block;
+            padding: 0.8rem;
+            background: #f8fafd;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            color: #2a5bc0;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .contact-list a:hover {
+            background: #eaeff5;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #2a5bc0;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .main-content {
+                padding: 10px;
+            }
+            .bill-checker, .info-section, .sidebar-widget {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>LESCO Online Bill Check</h1>
+            <p>Get your duplicate LESCO bill instantly using your 14-digit reference number or 10-digit customer ID. A safe, official, and free service.</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Column: Main Actions & Info -->
+            <div class="left-column">
+                <!-- Bill Checker -->
+                <section class="bill-checker">
+                    <h2>Check Your LESCO Bill Here</h2>
+                    <p>Enter your details below to view and download your current or duplicate electricity bill.</p>
+
+                    <div class="input-group">
+                        <label for="refNumber">14-Digit Reference Number OR 10-Digit Customer ID</label>
+                        <input type="text" id="refNumber" placeholder="e.g., 12345678901234" maxlength="14">
+                    </div>
+
+                    <button class="button" onclick="checkBill()">Check My Bill Now</button>
+
+                    <div class="note">
+                        <strong>Where to find your number?</strong> Your 14-digit reference number or 10-digit customer ID is printed on the top-left corner of your previous paper bill.
+                    </div>
+                </section>
+
+                <!-- Payment Methods -->
+                <section class="info-section">
+                    <h3><i>1</i> How to Pay Your LESCO Bill</h3>
+                    <p>You have multiple convenient options to pay your bill, both online and offline.</p>
+
+                    <div class="highlight-box">
+                        <h4>Online Payment Methods</h4>
+                        <ul>
+                            <li><strong>Digital Wallets:</strong> Use JazzCash or EasyPasa. Go to 'Bill Payment', select LESCO, enter your reference number, and pay.</li>
+                            <li><strong>Bank Apps & Online Banking:</strong> Use HBL, UBL, or MCB apps. Navigate to 'Bill Payment', select LESCO, and pay.</li>
+                            <li><strong>Raast QR Code:</strong> Simply scan the QR code printed on your bill using your bank or wallet app to pay instantly.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Offline Payment Methods</h4>
+                        <ul>
+                            <li>Visit any branch of major banks (HBL, UBL, MCB, National Bank) with your bill copy and cash.</li>
+                            <li>Pay at any Pakistan Post Office.</li>
+                            <li>Visit an authorized retailer (JazzCash or EasyPasa shop).</li>
+                        </ul>
+                        <p class="note"><strong>Note:</strong> Online payment is only available until the due date. After that, you must pay offline.</p>
+                    </div>
+                </section>
+
+                <!-- Understanding Your Bill -->
+                <section class="info-section">
+                    <h3><i>2</i> Understanding Your LESCO Bill</h3>
+                    <p>Key sections of your bill explained:</p>
+                    <ul>
+                        <li><strong>Customer Info & Billing Period:</strong> Your details and the dates for which you are charged.</li>
+                        <li><strong>Meter Reading:</strong> 'Previous' and 'Present' reading used to calculate your consumption in units.</li>
+                        <li><strong>Charges Breakdown:</strong> Includes cost per unit, meter rent, and Fuel Price Adjustment (FPA).</li>
+                        <li><strong>Taxes:</strong> Government surcharges like GST, Income Tax, and TV fee.</li>
+                        <li><strong>Total Amount & Due Date:</strong> The final amount to pay and the last date to avoid late fees.</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <div class="right-column">
+                <!-- Customer Support -->
+                <section class="sidebar-widget">
+                    <h3>Customer Support</h3>
+                    <p>Need help? Contact LESCO directly:</p>
+                    <div class="contact-list">
+                        <a href="tel:118">📞 General Helpline: 118</a>
+                        <a href="tel:04299205461">📞 Complaint Number: 042-99205461-62</a>
+                        <a>SMS Complaint Registration: 8118</a>
+                    </div>
+                    <p class="note" style="margin-top: 1rem; font-size: 0.9rem;">Use your 7-digit Customer ID to register for free SMS/Email bill alerts on the official LESCO website.</p>
+                </section>
+
+                <!-- Tips to Save -->
+                <section class="sidebar-widget">
+                    <h3>Tips to Reduce Your Bill</h3>
+                    <ul>
+                        <li>Turn off lights and appliances when not in use.</li>
+                        <li>Shift heavy usage (like washing) to <strong>off-peak hours</strong> (rates are lower).</li>
+                        <li>Peak hours vary by season (e.g., 6 PM–10 PM in summer).</li>
+                        <li>Monitor your monthly unit consumption against the tariff slabs.</li>
+                    </ul>
+                </section>
+
+                <!-- About LESCO -->
+                <section class="sidebar-widget">
+                    <h3>About LESCO</h3>
+                    <p>The Lahore Electric Supply Company distributes power to:</p>
+                    <ul>
+                        <li>Lahore</li>
+                        <li>Kasur</li>
+                        <li>Sheikhupura</li>
+                        <li>Nankana</li>
+                        <li>Okara</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.95rem;">It manages billing, infrastructure maintenance, and customer service for these regions.</p>
+                </section>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> |
+                <a href="#">Terms of Use</a> |
+                <a href="#">Official LESCO Website</a>
+            </div>
+            <p>This is a facilitation portal for LESCO consumers. LESCO is a trademark of Lahore Electric Supply Company.</p>
+            <p>© <span id="currentYear">2026</span> LESCO Online Bill Portal. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple script to simulate bill check interaction
+        function checkBill() {
+            const inputField = document.getElementById('refNumber');
+            const refNumber = inputField.value.trim();
+
+            if (!refNumber) {
+                alert('Please enter your 14-digit Reference Number or 10-digit Customer ID.');
+                inputField.focus();
+                return;
+            }
+
+            if (!/^\d{10,14}$/.test(refNumber)) {
+                alert('Please enter a valid numeric ID (10 or 14 digits).');
+                inputField.focus();
+                return;
+            }
+
+            // In a real scenario, this would connect to a server.
+            // For this demo, we simulate a successful check.
+            alert('Your bill is ready! In a real application, your duplicate bill would now be displayed on the screen for download. You can then use the "Print" dialog and choose "Save as PDF" to download it.');
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
